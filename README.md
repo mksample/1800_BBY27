@@ -8,9 +8,13 @@
 This browser based web application to ...
 <<<<<<< HEAD
 * Hi my name is Markus.
+<<<<<<< HEAD
 =======
 Hi my name is Monica. 
 >>>>>>> 2133dd9 (Added one line intro to README file for Monica)
+=======
+Hi My name is Waleed. 
+>>>>>>> 04ce2ef (made a pull request to make sure that the changes are accepted)
 	
 ## Technologies
 Technologies used for this project:
