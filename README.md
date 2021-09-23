@@ -6,7 +6,11 @@
 
 ## General Info
 This browser based web application to ...
+<<<<<<< HEAD
 * Hi my name is Markus.
+=======
+Hi my name is Monica. 
+>>>>>>> 2133dd9 (Added one line intro to README file for Monica)
 	
 ## Technologies
 Technologies used for this project:
