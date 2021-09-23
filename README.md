@@ -6,7 +6,6 @@
 
 ## General Info
 This browser based web application to ...
-<<<<<<< HEAD
 * Hi my name is Markus.
 * Hi my name is Monica. 
 * Hi My name is Waleed. 
