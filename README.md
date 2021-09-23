@@ -8,7 +8,8 @@
 This browser based web application to ...
 * Hi my name is Markus.
 * Hi my name is Monica. 
-* Hi My name is Waleed. 
+* Hi My name is Waleed.
+This is a conflict
 	
 ## Technologies
 Technologies used for this project:
