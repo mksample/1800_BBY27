@@ -35,7 +35,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="login.html">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
@@ -50,13 +50,14 @@
   </nav>
 
   <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="images/logo.jpg" alt="" width="144" height="114">
+    <img id="note-logo" class="d-block mx-auto mb-4" src="images/logo.jpg" alt="logo" width="144" height="114">
     <h1 class="display-5 fw-bold">Welcome to the Note App!</h1>
 
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Create notes, organize them with folders, and set reminders!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg bg-info px-4 gap-3">Sign In</button>
+        <a href="login.html"><button type="button" class="btn btn-primary btn-lg bg-info px-4 gap-3">Sign
+            In</button></a>
       </div>
     </div>
   </div>
@@ -66,7 +67,7 @@
   <footer class="navbar justify-content-evenly bg-info fixed-bottom">
     <i class="material-icons">settings</i>
     <i class="material-icons">notifications</i>
-    <i class="material-icons">login</i>
+    <a href="login.html"><i class="material-icons">login</i></a>
   </footer>
 
   <!--------------------------------------------------->
