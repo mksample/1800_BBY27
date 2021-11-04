@@ -1,0 +1,30 @@
+#content {
+    display: flex;
+    justify-content: center;
+}
+
+/* Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html */
+.note {
+    cursor: move;
+    margin-bottom: 0.25rem;
+    user-select: none;
+
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Size */
+    height: 10rem;
+    width: 40rem;
+
+    /* Misc */
+    border: 1px solid #cbd5e0;
+    background-color: rgb(37, 183, 183);
+}
+
+.placeholder {
+    background-color: #edf2f7;
+    border: 2px dashed #cbd5e0;
+    margin-bottom: 0.25rem;
+}
