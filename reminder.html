@@ -14,13 +14,12 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=”stylesheet">
+    
+
 
   <!-- Google Icons (Material Design)-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Style -->
-  <link rel="stylesheet" href="/styles/main.css"/>
-
 </head>
 
 <body>
@@ -51,34 +50,57 @@
     </div>
   </nav>
 
-  <div id="content">
-    <div id="notes">
-      <div class="note" id="note-1">
-        Note 1
-      </div>
-      <div class="note" id="note-2">
-        Note 2
-      </div>
-      <div class="note" id="note-3">
-        Note 3
-      </div>
-      <div class="note" id="note-4">
-        Note 4
-      </div>
-      <div class="note" id="note-5">
-        Note 5
-      </div>
+  <div class="card" style="width: 24rem;">
+    <img src="/1800_BBY27/images/index.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">COMP 1800</h5>
+      <p class="card-text">A course about the process of creating projects and all of the steps involved.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Wireflow Coding Prelim <i class="material-icons">notifications</i> Due Oct 15, 2021</li>
+      <li class="list-group-item">User Testing Report <i class="material-icons">notifications</i> Due Oct 29, 2021</li>
+
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Add Task</a>
+      <a href="#" class="card-link">Delete Task</a>
+      <a href="#" class="card-link"><i class="material-icons">notifications</i></a>
     </div>
   </div>
 
+  <div class="card" style="width: 24rem;">
+    <img src="/1800_BBY27/images/oop.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">COMP 1510</h5>
+      <p class="card-text">A course about the object oriented programming.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Midterm on Oct 19, 2021</li>
+      <li class="list-group-item"></li>
+
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Add Task</a>
+      <a href="#" class="card-link">Delete Task</a>
+      <a href="#" class="card-link"><i class="material-icons">notifications</i></a>
+    </div>
+  </div>
+
+  <div class="md-form mx-5 my-5">
+    <input placeholder="Date and Time" type="text" data-open="picker2" class="form-control date-time picker-opener">
+    <input placeholder="Selected date" type="text" id="picker2"  class="form-control time-date-ghost">
+    <input placeholder="Selected time" data-open="picker2" type="text" class="form-control timepicker time-date-ghost">
+  </div>
+  
+
+
+  <br><br>
+
   <footer class="navbar justify-content-evenly bg-info fixed-bottom">
     <i class="material-icons">create_new_folder</i>
-    <a href="newnote.html"> <i class="material-icons">add_circle_outline</i></a>
+    <i class="material-icons">add_circle_outline</i>
     <a href="index.html"><i class="material-icons">logout</i></a>
   </footer>
-
-  <!-- JavaScript -->
-  <script src="/scripts/main.js"></script>
 
 </body>
 

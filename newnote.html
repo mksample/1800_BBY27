@@ -17,10 +17,6 @@
 
   <!-- Google Icons (Material Design)-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Style -->
-  <link rel="stylesheet" href="/styles/main.css"/>
-
 </head>
 
 <body>
@@ -51,34 +47,31 @@
     </div>
   </nav>
 
-  <div id="content">
-    <div id="notes">
-      <div class="note" id="note-1">
-        Note 1
-      </div>
-      <div class="note" id="note-2">
-        Note 2
-      </div>
-      <div class="note" id="note-3">
-        Note 3
-      </div>
-      <div class="note" id="note-4">
-        Note 4
-      </div>
-      <div class="note" id="note-5">
-        Note 5
-      </div>
+  <div class="card" style="width: 24rem; float: center;">
+
+    <div class="card-body">
+      <h5 class="card-title"><input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Note Title"></h5>
+      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Note Text">
+    </div>
+
+    <div class="card-text-center">
+      <a href="main.html" class="card-link">Add Note</a>
+      <a href="main.html" class="card-link">Cancel Note</a>
+      <a href="reminder.html" class="card-link"><i class="material-icons">notifications</i></a>
     </div>
   </div>
 
+ 
+
+
+
+  <br><br>
+
   <footer class="navbar justify-content-evenly bg-info fixed-bottom">
     <i class="material-icons">create_new_folder</i>
-    <a href="newnote.html"> <i class="material-icons">add_circle_outline</i></a>
+    <i class="material-icons">add_circle_outline</i>
     <a href="index.html"><i class="material-icons">logout</i></a>
   </footer>
-
-  <!-- JavaScript -->
-  <script src="/scripts/main.js"></script>
 
 </body>
 
