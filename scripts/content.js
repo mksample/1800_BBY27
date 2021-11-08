@@ -3,7 +3,7 @@ const content = {
     innerHTML: "",
 }
 
-// 
+// Class that organizes content data. This is then turned into the final HTML element.
 class contentData {
     constructor(title, body, images) {
         this.title = title;
