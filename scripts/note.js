@@ -1,12 +1,16 @@
 const note = {
     ID: "",
-    content: "",    // content object
-    reminder: "", // reminder object
-    folder: "", // folder object
+    innerHTML: "",
 }
 
 const noteData = {
-    ID: "",
+    content: "",
+    reminder: "",
+    folder: "",
+}
+
+const noteRef = {
+    selfID: "",
     userID: "",
     contentID: "",
     folderID: "",
@@ -23,49 +27,47 @@ const noteDB = {
 
     // get all notes associated with a user
     getNotes : function(userID) {
-        // create completed note array
-        // get note data
-        // construct note
-        // append to array
-        // return array of elements
+       // get note refs
+       // construct note data with ref
+       // construct notes with note data
+       // return notes
     },
 
-    // get all note data associated with a userID
-    getNoteData : function(userID) {
-        // create note data array
-        // get note data
+    constructNote : function(noteData) {
+        // get note skeleton
+        // add reminder data
+        // add folder data
+        // add content data
+        // return note
+    },
+
+    constructNoteData : function(noteRef) {
+        // create blank noteData obj
+        // get reminder data from ref
+        // get content data from ref
+        // get folder data from ref
+        // append data to noteData
+        // return noteData
+    },
+
+    getNoteRefs : function(userID) {
+        // create array
+        // get notes for a user
         // append to array
         // return array
     },
 
-    // construct note from note data
-    constructNote : function(noteData) {
-        // create blank note frame
-        // get from reminderDB with remnider id
-        // get from folderDB with folder id
-        // get from contentDB with folder id
-        // append queried data to note frame
-        // return note
+    createNote : function(noteData) {
+        // disassemble note data
+        // create reminder data
+        // create folder data
+        // create content data
+        // create note reference with IDs
+        // return null
     },
 
-    // checks if a note exists
-    noteExists : function (noteID) {
-        // query DB for note ID
-        // return true or false
-    },
-
-    // creates a new note
-    createNote : function(content, folder, reminder) {
-        // store reminder with reminderDB, return ID
-        // store folder with folderDB, return ID
-        // store content with contentDB, return ID
-        // create new note data with returned IDs
-        // return note ID
-    },
-
-    // creates note data in the DB
-    createNoteData: function(contentID, folderID, reminderID) {
-        // access noteDB and append information
+    createNoteRef : function(userID, contentID, reminderID, folderID) {
+        // add IDs to noteDB with a unique ID
         // return note ID
     },
 
