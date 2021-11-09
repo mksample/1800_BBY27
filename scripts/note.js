@@ -1,6 +1,7 @@
 // A complete note
 class note {
-    constructor(innerHTML) {
+    constructor(noteID, innerHTML) {
+        this.ID = noteID;
         this.innerHTML = innerHTML;
     }
 }
