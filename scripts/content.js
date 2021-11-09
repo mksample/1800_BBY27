@@ -5,10 +5,10 @@ const content = {
 
 // Class that organizes content data. This is then turned into the final HTML element.
 class contentData {
-    constructor(title, body, images) {
+    constructor(title, body, template) {
         this.title = title;
         this.body = body;
-        this.images = images;
+        this.template = template;
         this.timestamp = firebase.firestore.Timestamp.now();
     }
 }
@@ -16,20 +16,20 @@ class contentData {
 class contentDB {
 
     collection = "content"
-
+ 
     // Converts content data into a normal object which can be stored.
     converter = {
         toFirestore: function(data) { // Converts to firestore data format when writing
             return {
                 title: data.title,
                 body: data.body,
-                images: data.images,
+                template: data.template,
                 timestamp: data.timestamp
                 };
         },
         fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new contentData(data.title, data.body, data.images, data.timestamp);
+            return new contentData(data.title, data.body, data.template, data.timestamp);
         }
     }
 
@@ -82,8 +82,8 @@ class contentDB {
         if (contentData.body) {
             updateObj.body = contentData.body
         }
-        if (contentData.images) {
-            updateObj.images = contentData.images
+        if (contentData.template) {
+            updateObj.template = contentData.template
         }
 
         updateObj.timestamp = firebase.firestore.Timestamp.now()
@@ -98,9 +98,9 @@ class contentDB {
     }
 
     async testfunc() {
-        var id = await this.setContent(new contentData("title", "body", "images")); // create content
+        var id = await this.setContent(new contentData("title", "body", "template")); // create content
         console.log("1")
-        await this.updateContent(id, new contentData(null, "updated body", "updated images")); // update content
+        await this.updateContent(id, new contentData(null, "updated body", "updated template")); // update content
         console.log("2")
         var data = await this.getContent(id); // get updated content and print
         console.log(data);
@@ -110,6 +110,5 @@ class contentDB {
     }
 }
 
-// This code creates the contentDB object and runs the test function above upon loading a page. Uncomment to run and view the console for output
-// var contDB = new contentDB;
-// contDB.testfunc();
+// Create a contentDatabase var for use outside the script.
+var contentDatabase = new contentDB;
