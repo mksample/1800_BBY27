@@ -93,16 +93,14 @@ class folderDB {
 var folderDatabase = new folderDB;
 
 function showNote() {
-    var noteDiv = document.getElementById("note-1");
+    //var noteDiv = document.getElementById("note-1");
 
     // var input = document.createElement("input");
-
     // var button = document.createElement("button");
-
     // alert("Edit Note" + "\n" + input);
 
-    var body = document.getElementById("mainBody");
-    var mainDiv = document.getElementById("content");
+    //var body = document.getElementById("mainBody");
+    //var mainDiv = document.getElementById("content");
 
     var newDiv = document.createElement("div");
     newDiv.style.width = 'auto';
