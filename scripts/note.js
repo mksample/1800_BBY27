@@ -211,5 +211,3 @@ class noteDB {
 
 // Create a noteDatabase var for use outside the script.
 var noteDatabase = new noteDB(contentDatabase, reminderDatabase, folderDatabase);
-
-noteDatabase.testfunc();
