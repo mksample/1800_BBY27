@@ -111,5 +111,4 @@ function showNote() {
     //document.mainBody.append(newDiv);
 
     document.getElementById("notes").appendChild(newDiv);
-
 }
