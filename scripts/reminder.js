@@ -93,3 +93,27 @@ class reminderDB {
 
 // Create a reminderDatabase var for use outside the script.
 var reminderDatabase = new reminderDB;
+
+//// WIP CODE ////
+
+// $('#datetime').datetimepicker({
+  
+// });
+
+
+
+// //const db = firebase.firestore();
+// const form = document.getElementById("reminder-form");
+
+// form.addEventListener('submit', (e) => {
+//   event.preventDefault();
+
+//   //console.log(form.timeForm);
+//   const date = db.collection('reminders').add({
+//     date: form.timeForm.value
+    
+    
+//   })
+
+  
+// });
