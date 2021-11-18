@@ -136,7 +136,7 @@ class noteDB {
         
         await this.contentDB.deleteContent(noteRef.contentID)
         await this.reminderDB.deleteReminder(noteRef.reminderID)
-        await this.folderDB.deleteFolder(noteRef.folderDB)
+        await this.folderDB.deleteFolder(noteRef.folderID)
 
         await this.deleteNoteData(noteID)
     }
@@ -148,7 +148,7 @@ class noteDB {
     }
 
     // Tests notes db by creating two notes, getting them based on userID, printing them, and deleting them.
-    async testfunc(d1, d2) {
+    async testfunc() {
         // Create new note
         let id = await this.createNote(
             new noteInputData("user1", 
@@ -211,3 +211,5 @@ class noteDB {
 
 // Create a noteDatabase var for use outside the script.
 var noteDatabase = new noteDB(contentDatabase, reminderDatabase, folderDatabase);
+
+noteDatabase.testfunc();
