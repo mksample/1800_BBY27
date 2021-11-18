@@ -5,7 +5,8 @@ const content = {
 
 // Class that organizes content data. This is then turned into the final HTML element.
 class contentData {
-    constructor(title, body, template, timestamp) {
+    constructor(title, body, template, timestamp, id) {
+        this.id = id;
         this.title = title;
         this.body = body;
         this.template = template;
@@ -29,13 +30,13 @@ class contentDB {
         },
         fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new contentData(data.title, data.body, data.template, data.timestamp);
+            return new contentData(data.title, data.body, data.template, data.timestamp, snapshot.id);
         }
     }
 
     // Gets content HTML for a note.
     async getContent(contentID) {
-        var contentData = await this.getContentData(contentID);
+        let contentData = await this.getContentData(contentID);
 
         // Still need to write method for contentData --> HTML
         // noteContent = this.constructContent(contentData);
@@ -44,8 +45,8 @@ class contentDB {
 
     // Gets content data.
     getContentData(contentID) {
-        var docRef = db.collection(this.collection).doc(contentID)
-        var contentData = docRef.withConverter(this.converter).get().then(doc => {
+        let docRef = db.collection(this.collection).doc(contentID)
+        let contentData = docRef.withConverter(this.converter).get().then(doc => {
             if (doc.exists) {
                 return doc.data();
             } else {
@@ -64,8 +65,8 @@ class contentDB {
 
     // Writes content data.
     async createContent(contentData) {
-        var docRef = db.collection(this.collection)
-        var id = docRef.withConverter(this.converter).add(contentData).then(doc => {
+        let docRef = db.collection(this.collection)
+        let id = docRef.withConverter(this.converter).add(contentData).then(doc => {
             return doc.id;
         })
 
@@ -74,8 +75,8 @@ class contentDB {
 
     // Updates content data. Accepts null values.
     async updateContent(contentID, contentData) {
-        var contentDataRef = db.collection(this.collection).doc(contentID);
-        var updateObj = {};
+        let contentDataRef = db.collection(this.collection).doc(contentID);
+        let updateObj = {};
         if (contentData.title) {
             updateObj.title = contentData.title;
         } 
@@ -94,10 +95,10 @@ class contentDB {
 
     // Delets content data.
     async deleteContent(contentID) {
-        var contentDataRef = db.collection(this.collection).doc(contentID);
+        let contentDataRef = db.collection(this.collection).doc(contentID);
         return contentDataRef.delete();
     }
 }
 
-// Create a contentDatabase var for use outside the script.
+// Create a contentDatabase let for use outside the script.
 var contentDatabase = new contentDB;

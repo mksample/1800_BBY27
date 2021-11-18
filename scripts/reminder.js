@@ -5,9 +5,10 @@ const reminder = {
 
 // Class that organizes reminder data. This is then turned into the final HTML element.
 class reminderData {
-    constructor(date, timestamp) {
+    constructor(date, timestamp, id) {
         this.date = date;
         this.timestamp = timestamp;
+        this.id = id;
     }
 }
 
@@ -25,13 +26,13 @@ class reminderDB {
         },
         fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new reminderData(data.date, data.timestamp);
+            return new reminderData(data.date, data.timestamp, snapshot.id);
         }
     }
 
     // Gets reminder HTML for a note.
     async getReminder(reminderID) {
-        var reminderData = await this.getReminderData(reminderID);
+        let reminderData = await this.getReminderData(reminderID);
 
         // Still need to write method for reminderData --> HTML
         // notereminder = this.constructreminder(reminderData);
@@ -40,8 +41,8 @@ class reminderDB {
 
     // Gets reminder data.
     getReminderData(reminderID) {
-        var docRef = db.collection(this.collection).doc(reminderID)
-        var reminderData = docRef.withConverter(this.converter).get().then(doc => {
+        let docRef = db.collection(this.collection).doc(reminderID)
+        let reminderData = docRef.withConverter(this.converter).get().then(doc => {
             if (doc.exists) {
                 return doc.data();
             } else {
@@ -60,8 +61,8 @@ class reminderDB {
 
     // Writes reminder data.
     async createReminder(reminderData) {
-        var docRef = db.collection(this.collection)
-        var id = docRef.withConverter(this.converter).add(reminderData).then(doc => {
+        let docRef = db.collection(this.collection)
+        let id = docRef.withConverter(this.converter).add(reminderData).then(doc => {
             return doc.id;
         })
 
@@ -70,8 +71,8 @@ class reminderDB {
 
     // Updates reminder data. Accepts null values.
     async updateReminder(reminderID, reminderData) {
-        var reminderDataRef = db.collection(this.collection).doc(reminderID);
-        var updateObj = {};
+        let reminderDataRef = db.collection(this.collection).doc(reminderID);
+        let updateObj = {};
         if (reminderData.date) {
             updateObj.date = reminderData.date;
         } 
@@ -86,12 +87,12 @@ class reminderDB {
 
     // Delets reminder data.
     async deleteReminder(reminderID) {
-        var reminderDataRef = db.collection(this.collection).doc(reminderID);
+        let reminderDataRef = db.collection(this.collection).doc(reminderID);
         return reminderDataRef.delete();
     }
 }
 
-// Create a reminderDatabase var for use outside the script.
+// Create a reminderDatabase let for use outside the script.
 var reminderDatabase = new reminderDB;
 
 //// WIP CODE ////

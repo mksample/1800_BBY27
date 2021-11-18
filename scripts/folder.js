@@ -5,9 +5,10 @@ const folder = {
 
 // Class that organizes folder data. This is then turned into the final HTML element.
 class folderData {
-    constructor(name, timestamp) {
+    constructor(name, timestamp, id) {
         this.name = name;
         this.timestamp = timestamp;
+        this.id = id;
     }
 }
 
@@ -25,13 +26,13 @@ class folderDB {
         },
         fromFirestore: function (snapshot, options) { // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new folderData(data.name, data.timestamp);
+            return new folderData(data.name, data.timestamp, snapshot.id);
         }
     }
 
     // Gets folder HTML for a note.
     async getFolder(folderID) {
-        var folderData = await this.getFolderData(folderID);
+        let folderData = await this.getFolderData(folderID);
 
         // Still need to write method for folderData --> HTML
         // notefolder = this.constructfolder(folderData);
@@ -40,8 +41,8 @@ class folderDB {
 
     // Gets folder data.
     getFolderData(folderID) {
-        var docRef = db.collection(this.collection).doc(folderID)
-        var folderData = docRef.withConverter(this.converter).get().then(doc => {
+        let docRef = db.collection(this.collection).doc(folderID)
+        let folderData = docRef.withConverter(this.converter).get().then(doc => {
             if (doc.exists) {
                 return doc.data();
             } else {
@@ -60,8 +61,8 @@ class folderDB {
 
     // Writes folder data.
     async createFolder(folderData) {
-        var docRef = db.collection(this.collection)
-        var id = docRef.withConverter(this.converter).add(folderData).then(doc => {
+        let docRef = db.collection(this.collection)
+        let id = docRef.withConverter(this.converter).add(folderData).then(doc => {
             return doc.id;
         })
 
@@ -70,8 +71,8 @@ class folderDB {
 
     // Updates folder data. Accepts null values.
     async updateFolder(folderID, folderData) {
-        var folderDataRef = db.collection(this.collection).doc(folderID);
-        var updateObj = {};
+        let folderDataRef = db.collection(this.collection).doc(folderID);
+        let updateObj = {};
         if (folderData.name) {
             updateObj.name = folderData.name;
         } 
@@ -84,17 +85,17 @@ class folderDB {
 
     // Delets folder data.
     async deleteFolder(folderID) {
-        var folderDataRef = db.collection(this.collection).doc(folderID);
+        let folderDataRef = db.collection(this.collection).doc(folderID);
         return folderDataRef.delete();
     }
 }
 
-// Create a folderDatabase var for use outside the script.
+// Create a folderDatabase let for use outside the script.
 var folderDatabase = new folderDB;
 
 function showNote() {
     // Create a new div element
-    var newDiv = document.createElement("div");
+    let newDiv = document.createElement("div");
     newDiv.style.width = '40rem';
     newDiv.style.height = '10rem';
     
