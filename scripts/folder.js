@@ -93,23 +93,20 @@ class folderDB {
 var folderDatabase = new folderDB;
 
 function showNote() {
-    //var noteDiv = document.getElementById("note-1");
-
-    // var input = document.createElement("input");
-    // var button = document.createElement("button");
-    // alert("Edit Note" + "\n" + input);
-
-    //var body = document.getElementById("mainBody");
-    //var mainDiv = document.getElementById("content");
-
+    // Create a new div element
     var newDiv = document.createElement("div");
     newDiv.style.width = '40rem';
     newDiv.style.height = '10rem';
     
+    // Style
     newDiv.style.backgroundColor = 'rgb(37, 183, 183)';
     newDiv.classList.add('note');
     newDiv.innerHTML = document.getElementById("note-title-input").value;
-    //document.mainBody.append(newDiv);
-
+    
+    // Add physical note to html of main page
     document.getElementById("notes").appendChild(newDiv);
+
+    // Clear input fields
+    document.getElementById("note-title-input").value = "";
+    document.getElementById("note-text-input").value = "";
 }

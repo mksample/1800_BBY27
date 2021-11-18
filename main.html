@@ -66,14 +66,11 @@
 
 
 
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-    data-bs-whatever="@getbootstrap">Add Note</button> -->
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Note</h5>
+          <h5 class="modal-title" id="noteModalLabel">New Note</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -91,6 +88,30 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" onclick="showNote()">Add Note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="folderModal" tabindex="-1" aria-labelledby="folderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="folderModalLabel">New Folder</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Folder Title</label>
+              <input type="text" class="form-control" id="folder-title-input">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add Folder</button>
         </div>
       </div>
     </div>
@@ -119,8 +140,8 @@
   </div>
 
   <footer class="navbar justify-content-evenly bg-info fixed-bottom">
-    <a href="newfolder.html"><i class="material-icons">create_new_folder</i></a>
-    <a data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="material-icons">add_circle_outline</i></a>
+    <a data-bs-toggle="modal" data-bs-target="#folderModal"> <i class="material-icons">create_new_folder</i></a>
+    <a data-bs-toggle="modal" data-bs-target="#noteModal"> <i class="material-icons">add_circle_outline</i></a>
     <a href="index.html"><i class="material-icons">logout</i></a>
   </footer>
 
