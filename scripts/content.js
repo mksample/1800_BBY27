@@ -36,7 +36,7 @@ class contentDB {
 
     // Gets content HTML for a note.
     async getContent(contentID) {
-        var contentData = await this.getContentData(contentID);
+        let contentData = await this.getContentData(contentID);
 
         // Still need to write method for contentData --> HTML
         // noteContent = this.constructContent(contentData);
@@ -45,8 +45,8 @@ class contentDB {
 
     // Gets content data.
     getContentData(contentID) {
-        var docRef = db.collection(this.collection).doc(contentID)
-        var contentData = docRef.withConverter(this.converter).get().then(doc => {
+        let docRef = db.collection(this.collection).doc(contentID)
+        let contentData = docRef.withConverter(this.converter).get().then(doc => {
             if (doc.exists) {
                 return doc.data();
             } else {
@@ -65,8 +65,8 @@ class contentDB {
 
     // Writes content data.
     async createContent(contentData) {
-        var docRef = db.collection(this.collection)
-        var id = docRef.withConverter(this.converter).add(contentData).then(doc => {
+        let docRef = db.collection(this.collection)
+        let id = docRef.withConverter(this.converter).add(contentData).then(doc => {
             return doc.id;
         })
 
@@ -75,8 +75,8 @@ class contentDB {
 
     // Updates content data. Accepts null values.
     async updateContent(contentID, contentData) {
-        var contentDataRef = db.collection(this.collection).doc(contentID);
-        var updateObj = {};
+        let contentDataRef = db.collection(this.collection).doc(contentID);
+        let updateObj = {};
         if (contentData.title) {
             updateObj.title = contentData.title;
         } 
@@ -95,10 +95,10 @@ class contentDB {
 
     // Delets content data.
     async deleteContent(contentID) {
-        var contentDataRef = db.collection(this.collection).doc(contentID);
+        let contentDataRef = db.collection(this.collection).doc(contentID);
         return contentDataRef.delete();
     }
 }
 
-// Create a contentDatabase var for use outside the script.
+// Create a contentDatabase let for use outside the script.
 var contentDatabase = new contentDB;
