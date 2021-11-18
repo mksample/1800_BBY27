@@ -18,11 +18,12 @@ class noteInputData {
 
 // Class representing how note data is stored
 class noteData {
-    constructor(userID, contentID, reminderID, folderID) {
+    constructor(userID, contentID, reminderID, folderID, timestamp) {
        this.userID = userID;
        this.contentID = contentID;
        this.reminderID = reminderID;
        this.folderID = folderID;
+       this.timestamp = timestamp;
     }
 }
 
@@ -97,16 +98,16 @@ class noteDB {
 
     // Creates a whole note.
     async createNote(noteInputData) {
-        var contentID = await this.contentDB.setContent(noteInputData.contentData);
-        var reminderID = await this.reminderDB.setReminder(noteInputData.reminderData);
-        var folderID = await this.folderDB.setFolder(noteInputData.folderData);
+        var contentID = await this.contentDB.createContent(noteInputData.contentData);
+        var reminderID = await this.reminderDB.createReminder(noteInputData.reminderData);
+        var folderID = await this.folderDB.createFolder(noteInputData.folderData);
 
-        var noteID = await this.setNoteData(new noteData(noteInputData.userID, contentID, reminderID, folderID));
+        var noteID = await this.createNoteData(new noteData(noteInputData.userID, contentID, reminderID, folderID));
         return noteID;
     }
 
     // Writes note data.
-    async setNoteData(noteData) {
+    async createNoteData(noteData) {
         var docRef = db.collection(this.collection);
         var id = docRef.withConverter(this.converter).add(noteData).then(doc => {
             return doc.id;
@@ -123,7 +124,7 @@ class noteDB {
         } 
         if (noteInputData.reminderData) {
             await this.reminderDB.updateContent(noteRef.reminderID, noteRef.reminderData);
-        } 
+        }
         if (noteInputData.folderData) {
             await this.contentDB.updateContent(noteRef.folderID, noteInputData.folderData);
         }
@@ -148,14 +149,63 @@ class noteDB {
 
     // Tests notes db by creating two notes, getting them based on userID, printing them, and deleting them.
     async testfunc(d1, d2) {
-        var id1 = await this.createNote(d1); // create note 1
-        var id2 = await this.createNote(d2); // create note 2
-        var noteDatas = await this.getUserNotesData("testUserID"); // get note datas
-        noteDatas.forEach((noteData) => {
-            console.log(noteData.data()); // print each note data
-        })
-        await this.deleteNote(id1); // delete note 1
-        await this.deleteNote(id2); // delete note 2
+        // Create new note
+        let id = await this.createNote(
+            new noteInputData("user1", 
+                new contentData("note title", "note body", "note template", firebase.firestore.Timestamp.now()),
+                new reminderData("reminder date", firebase.firestore.Timestamp.now()),
+                new folderData("folder name", firebase.firestore.Timestamp.now()),
+            )
+        );
+        
+        // Get note data (userID, contentID, reminderID, folderID, timestamp)
+        let nd = await this.getNoteData(id);
+        console.log("Note data:");
+        console.log(nd);
+
+        // Get content data (title, body, template)
+        let c = await this.contentDB.getContentData(nd.contentID);
+        console.log("Content data:");
+        console.log(c);
+
+        // Update content title, template and timestamp
+        await this.contentDB.updateContent(nd.contentID, 
+            new contentData("note title 2", null, "note template 2", firebase.firestore.Timestamp.now()),
+        );
+        let c2 = await this.contentDB.getContentData(nd.contentID);
+        console.log("Updated content data:");
+        console.log(c2);
+
+        // Get reminder data (date, timestamp)
+        let r = await this.reminderDB.getReminderData(nd.reminderID);
+        console.log("Reminder data:");
+        console.log(r);
+
+        // Update reminder date
+        await this.reminderDB.updateReminder(nd.reminderID, 
+            new reminderData("reminder date 2", null),
+        );
+        let r2 = await this.reminderDB.getReminderData(nd.reminderID);
+        console.log("Updated reminder data:");
+        console.log(r2);
+
+        // Get folder data (name, timestamp)
+        let f = await this.folderDB.getFolderData(nd.folderID);
+        console.log("Folder data:");
+        console.log(f);
+
+        // Update folder name
+        await this.folderDB.updateFolder(nd.folderID, 
+            new folderData("folder name 2", null),
+        );
+        let f2 = await this.folderDB.getFolderData(nd.folderID);
+        console.log("Updated folder data:");
+        console.log(f2);
+
+        // Delete note (will also remove entries from contentDB, reminderDB, and folderDB)
+        await this.deleteNote(id);
+        console.log("Deleted note data, content data, reminder data and folder data");
+
     }
 }
 

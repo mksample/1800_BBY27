@@ -5,11 +5,11 @@ const content = {
 
 // Class that organizes content data. This is then turned into the final HTML element.
 class contentData {
-    constructor(title, body, template) {
+    constructor(title, body, template, timestamp) {
         this.title = title;
         this.body = body;
         this.template = template;
-        this.timestamp = firebase.firestore.Timestamp.now();
+        this.timestamp = timestamp;
     }
 }
 
@@ -63,7 +63,7 @@ class contentDB {
     }
 
     // Writes content data.
-    async setContent(contentData) {
+    async createContent(contentData) {
         var docRef = db.collection(this.collection)
         var id = docRef.withConverter(this.converter).add(contentData).then(doc => {
             return doc.id;
@@ -77,16 +77,17 @@ class contentDB {
         var contentDataRef = db.collection(this.collection).doc(contentID);
         var updateObj = {};
         if (contentData.title) {
-            updateObj.title = contentData.title
+            updateObj.title = contentData.title;
         } 
         if (contentData.body) {
-            updateObj.body = contentData.body
+            updateObj.body = contentData.body;
         }
         if (contentData.template) {
-            updateObj.template = contentData.template
+            updateObj.template = contentData.template;
         }
-
-        updateObj.timestamp = firebase.firestore.Timestamp.now()
+        if (contentData.timestamp) {
+            updateObj.timestamp = contentData.timestamp;
+        }
 
         return contentDataRef.update(updateObj)
     }
@@ -95,18 +96,6 @@ class contentDB {
     async deleteContent(contentID) {
         var contentDataRef = db.collection(this.collection).doc(contentID);
         return contentDataRef.delete();
-    }
-
-    async testfunc() {
-        var id = await this.setContent(new contentData("title", "body", "template")); // create content
-        console.log("1")
-        await this.updateContent(id, new contentData(null, "updated body", "updated template")); // update content
-        console.log("2")
-        var data = await this.getContent(id); // get updated content and print
-        console.log(data);
-        console.log("3")
-        await this.deleteContent(id) // delete content
-        console.log("4")
     }
 }
 
