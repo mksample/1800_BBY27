@@ -103,11 +103,12 @@ function showNote() {
     //var mainDiv = document.getElementById("content");
 
     var newDiv = document.createElement("div");
-    newDiv.style.width = 'auto';
-    newDiv.style.height = '200px';
+    newDiv.style.width = '40rem';
+    newDiv.style.height = '10rem';
+    
     newDiv.style.backgroundColor = 'rgb(37, 183, 183)';
     newDiv.classList.add('note');
-    newDiv.innerHTML = "Show Note"
+    newDiv.innerHTML = document.getElementById("note-title-input").value;
     //document.mainBody.append(newDiv);
 
     document.getElementById("notes").appendChild(newDiv);
