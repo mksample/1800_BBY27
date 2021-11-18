@@ -11,15 +11,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Include Bootstrap CDN -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+  </script>
+
+  <!-- Include Moment.js CDN -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js">
+  </script>
+
+  <!-- Include Bootstrap DateTimePicker CDN -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
+    rel="stylesheet">
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js">
+    </script>
+    
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=”stylesheet">
-    
 
 
   <!-- Google Icons (Material Design)-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Firebase 8 CDNs-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+
+
+
+  <!-- Link to the api keys for firebase -->
+  <script src="./scripts/firebaseAPI.js"></script>
 </head>
 
 <body>
@@ -50,48 +84,20 @@
     </div>
   </nav>
 
-  <div class="card" style="width: 24rem;">
-    <img src="/1800_BBY27/images/index.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">COMP 1800</h5>
-      <p class="card-text">A course about the process of creating projects and all of the steps involved.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Wireflow Coding Prelim <i class="material-icons">notifications</i> Due Oct 15, 2021</li>
-      <li class="list-group-item">User Testing Report <i class="material-icons">notifications</i> Due Oct 29, 2021</li>
 
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Add Task</a>
-      <a href="#" class="card-link">Delete Task</a>
-      <a href="#" class="card-link"><i class="material-icons">notifications</i></a>
+  <div class="container" style="margin:100px">
+    <div style="position: relative">
+
+      <form id="reminder-form">
+        <input name="timeForm" class="form-control" type="text" id="datetime" />
+
+        <button>Add Date</button>
+      </form>
     </div>
   </div>
 
-  <div class="card" style="width: 24rem;">
-    <img src="/1800_BBY27/images/oop.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">COMP 1510</h5>
-      <p class="card-text">A course about the object oriented programming.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Midterm on Oct 19, 2021</li>
-      <li class="list-group-item"></li>
 
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Add Task</a>
-      <a href="#" class="card-link">Delete Task</a>
-      <a href="#" class="card-link"><i class="material-icons">notifications</i></a>
-    </div>
-  </div>
 
-  <div class="md-form mx-5 my-5">
-    <input placeholder="Date and Time" type="text" data-open="picker2" class="form-control date-time picker-opener">
-    <input placeholder="Selected date" type="text" id="picker2"  class="form-control time-date-ghost">
-    <input placeholder="Selected time" data-open="picker2" type="text" class="form-control timepicker time-date-ghost">
-  </div>
-  
 
 
   <br><br>
@@ -101,6 +107,9 @@
     <i class="material-icons">add_circle_outline</i>
     <a href="index.html"><i class="material-icons">logout</i></a>
   </footer>
+
+  <script src="./scripts/reminder.js"></script>
+
 
 </body>
 
