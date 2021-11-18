@@ -5,9 +5,10 @@ const reminder = {
 
 // Class that organizes reminder data. This is then turned into the final HTML element.
 class reminderData {
-    constructor(date, timestamp) {
+    constructor(date, timestamp, id) {
         this.date = date;
         this.timestamp = timestamp;
+        this.id = id;
     }
 }
 
@@ -25,7 +26,7 @@ class reminderDB {
         },
         fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new reminderData(data.date, data.timestamp);
+            return new reminderData(data.date, data.timestamp, snapshot.id);
         }
     }
 

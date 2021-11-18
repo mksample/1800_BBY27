@@ -5,7 +5,8 @@ const content = {
 
 // Class that organizes content data. This is then turned into the final HTML element.
 class contentData {
-    constructor(title, body, template, timestamp) {
+    constructor(title, body, template, timestamp, id) {
+        this.id = id;
         this.title = title;
         this.body = body;
         this.template = template;
@@ -29,7 +30,7 @@ class contentDB {
         },
         fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new contentData(data.title, data.body, data.template, data.timestamp);
+            return new contentData(data.title, data.body, data.template, data.timestamp, snapshot.id);
         }
     }
 

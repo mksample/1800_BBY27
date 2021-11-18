@@ -5,9 +5,10 @@ const folder = {
 
 // Class that organizes folder data. This is then turned into the final HTML element.
 class folderData {
-    constructor(name, timestamp) {
+    constructor(name, timestamp, id) {
         this.name = name;
         this.timestamp = timestamp;
+        this.id = id;
     }
 }
 
@@ -25,7 +26,7 @@ class folderDB {
         },
         fromFirestore: function (snapshot, options) { // Converts from firestore data format when reading
             const data = snapshot.data(options);
-            return new folderData(data.name, data.timestamp);
+            return new folderData(data.name, data.timestamp, snapshot.id);
         }
     }
 
