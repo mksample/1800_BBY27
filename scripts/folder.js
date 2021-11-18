@@ -17,13 +17,13 @@ class folderDB {
  
     // Converts folder data into a normal object which can be stored.
     converter = {
-        toFirestore: function(data) { // Converts to firestore data format when writing
+        toFirestore: function (data) { // Converts to firestore data format when writing
             return {
                 name: data.name,
                 timestamp: data.timestamp
-                };
+            };
         },
-        fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
+        fromFirestore: function (snapshot, options) { // Converts from firestore data format when reading
             const data = snapshot.data(options);
             return new folderData(data.name, data.timestamp);
         }
@@ -91,3 +91,22 @@ class folderDB {
 
 // Create a folderDatabase var for use outside the script.
 var folderDatabase = new folderDB;
+
+function showNote() {
+    // Create a new div element
+    var newDiv = document.createElement("div");
+    newDiv.style.width = '40rem';
+    newDiv.style.height = '10rem';
+    
+    // Style
+    newDiv.style.backgroundColor = 'rgb(37, 183, 183)';
+    newDiv.classList.add('note');
+    newDiv.innerHTML = document.getElementById("note-title-input").value;
+    
+    // Add physical note to html of main page
+    document.getElementById("notes").appendChild(newDiv);
+
+    // Clear input fields
+    document.getElementById("note-title-input").value = "";
+    document.getElementById("note-text-input").value = "";
+}
