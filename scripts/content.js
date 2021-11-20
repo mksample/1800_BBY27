@@ -17,18 +17,18 @@ class contentData {
 class contentDB {
 
     collection = "content"
- 
+
     // Converts content data into a normal object which can be stored.
     converter = {
-        toFirestore: function(data) { // Converts to firestore data format when writing
+        toFirestore: function (data) { // Converts to firestore data format when writing
             return {
                 title: data.title,
                 body: data.body,
                 template: data.template,
                 timestamp: data.timestamp
-                };
+            };
         },
-        fromFirestore: function(snapshot, options){ // Converts from firestore data format when reading
+        fromFirestore: function (snapshot, options) { // Converts from firestore data format when reading
             const data = snapshot.data(options);
             return new contentData(data.title, data.body, data.template, data.timestamp, snapshot.id);
         }
@@ -61,6 +61,27 @@ class contentDB {
     constructContent(contentData) {
         // construct content HTML from content data
         // return content HTML
+
+        // Create new elements for each content item
+        var contentLayout = document.createElement("div");
+        contentLayout.id = "contentDivID";
+        var contentTitleDiv = document.createElement("h2");
+        var contentBodyDiv = document.createElement("textarea");
+
+        // Set the elements to the values of the data
+        contentTitleDiv.textContent = contentData.title + "\n";
+        contentBodyDiv.innerHTML = contentData.body;
+
+        // Style
+        contentBodyDiv.style.width = '50%';
+
+        // Add the elements to the page
+        document.body.appendChild(contentLayout);
+        contentLayout.appendChild(contentTitleDiv);
+        contentLayout.appendChild(contentBodyDiv);
+
+        // Supposed to return the html element but might not work ?
+        return contentLayout;
     }
 
     // Writes content data.
@@ -79,7 +100,7 @@ class contentDB {
         let updateObj = {};
         if (contentData.title) {
             updateObj.title = contentData.title;
-        } 
+        }
         if (contentData.body) {
             updateObj.body = contentData.body;
         }
@@ -102,3 +123,28 @@ class contentDB {
 
 // Create a contentDatabase let for use outside the script.
 var contentDatabase = new contentDB;
+
+
+// Displays users name on main.html page
+function insertName() {
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        if (user) {
+            // Do something for the current logged-in user here: 
+            console.log(user.uid);
+            //go to the correct user document by referencing to the user uid
+            currentUser = db.collection("users").doc(user.uid);
+            //get the document for current user.
+            currentUser.get()
+                .then(userDoc => {
+                    var user_Name = userDoc.data().name;
+                    console.log(user_Name);
+                    // Insert using jquery
+                    $("#username").text(user_Name + "'s Notes");
+                })
+        } else {
+            // No user is signed in.
+        }
+    });
+}
+insertName();
