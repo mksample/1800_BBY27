@@ -111,7 +111,7 @@ function showNote() {
     var noteTitle =  document.getElementById("note-title-input").value
     var noteText = document.getElementById("note-text-input").value
 
-    
+    let noteInputDAT = new noteInputData();
 
     let noteDatabase = new noteDB(contentDatabase, reminderDatabase, folderDatabase);
     noteDatabase.createNote(new noteInputData("user1",
