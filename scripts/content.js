@@ -57,31 +57,10 @@ class contentDB {
         return contentData;
     }
 
-    // UNFINISHED, transforms content data into an HTML element. 
+    // Transforms content data into an HTML element. 
     constructContent(contentData) {
         // construct content HTML from content data
         // return content HTML
-
-        // // Create new elements for each content item
-        // var contentLayout = document.createElement("div");
-        // contentLayout.id = "contentDivID";
-        // var contentTitleDiv = document.createElement("h2");
-        // var contentBodyDiv = document.createElement("textarea");
-
-        // // Set the elements to the values of the data
-        // contentTitleDiv.textContent = contentData.title + "\n";
-        // contentBodyDiv.innerHTML = contentData.body;
-
-        // // Style
-        // contentBodyDiv.style.width = '50%';
-
-        // // Add the elements to the page
-        // //document.body.appendChild(contentLayout);
-        // contentLayout.appendChild(contentTitleDiv);
-        // contentLayout.appendChild(contentBodyDiv);
-
-        // // Return content html
-        // return contentLayout;
 
         // Get each element in content.html
         var contentLayout = document.getElementById("contentTemplate");
