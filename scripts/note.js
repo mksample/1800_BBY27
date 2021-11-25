@@ -48,25 +48,42 @@ class noteDB {
         }
     }
 
-    // UNFINISHED, Gets all note HTML elements with a userID.
-    getNotes(userID) {
-        let noteSnapshots = this.getUserNotesData(userID);
+    // gets all note HTML elements associated with a user.
+    async getNotes(userID) {
+        let noteSnapshots = await this.getUserNotesData(userID);
+
+        let noteDatas = [];
         noteSnapshots.forEach((noteSnap) => {
-            console.log(noteSnap);
+            noteDatas.push(noteSnap.data());
         });
+
+        let notes = [];
+        for (let noteData of noteDatas) {
+            let note = await this.constructNote(noteData);
+            notes.push(note);
+        }
+
+        console.log(notes);
     }
 
-    // UNFINISHED, Turns note data into an HTML element.
-    async constructNote(noteID, noteData) {
-        // let note = document.getElementById("NoteTemplate");
+    // constructs a note HTML element from content and reminder HTML elements.
+    async constructNote(noteData) {
+        // Get note from template
+        let NoteTemplate = document.getElementById("NoteTemplate"); // SELECT THE DOCUMENT FIRST LMAO
+        let note = NoteTemplate.content.cloneNode(true);
+        
+        console.log(note);
 
-        // let content = await this.contentDB.getContent(noteData.contentID);
-        // note.querySelector('.noteContent').innerHTML = content;
+        // Insert content into note
+        let content = await this.contentDB.getContent(noteData.contentID);
+        note.querySelector('.noteContent').innerHTML = content;
 
-        // let reminder = await this.contentDB.getReminder(noteData.reminderID);
-        // note.querySelector('.noteReminder').innerHTML = reminder;
+        // Insert reminder into note
+        let reminder = await this.reminderDB.getReminder(noteData.reminderID);
+        note.querySelector('.noteReminder').innerHTML = reminder;
 
-        // note.setAttribute("id", noteID);
+        // Set element ID
+        note.querySelector('.note').setAttribute("id", noteData.id);
 
         return note
     }
@@ -212,4 +229,3 @@ class noteDB {
 
 // Create a noteDatabase let for use outside the script.
 var noteDatabase = new noteDB(contentDatabase, reminderDatabase, folderDatabase);
-noteDatabase.testfunc();

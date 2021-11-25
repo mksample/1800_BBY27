@@ -25,7 +25,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -37,6 +37,7 @@
 </head>
 
 <body id="mainBody">
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Note App</a>
@@ -64,8 +65,22 @@
     </div>
   </nav>
 
+  <!-- Templates -->
+  <template id="NoteTemplate">
+    <div class="note">
+      <div class="noteTitle">
+        
+      </div>
+      <div class="noteContent">
 
+      </div>
+      <div class="noteReminder">
 
+      </div>
+    </div>
+  </template>
+
+  <!-- New note modal -->
   <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -93,7 +108,7 @@
     </div>
   </div>
 
-
+  <!-- New folder modal -->
   <div class="modal fade" id="folderModal" tabindex="-1" aria-labelledby="folderModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -150,9 +165,9 @@
   <script src="/scripts/reminder.js"></script>
   <script src="/scripts/folder.js"></script>
   <script src="/scripts/note.js"></script>
-  
+
   <script src="/scripts/main.js"></script>
-  
+
 </body>
 
 </html>
