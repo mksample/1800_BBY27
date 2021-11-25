@@ -28,3 +28,7 @@
     border: 2px dashed #cbd5e0;
     margin-bottom: 0.25rem;
 }
+
+#username {
+    text-shadow: 0 1px 4px rgb(37, 183, 183);
+}
