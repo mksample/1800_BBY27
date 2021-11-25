@@ -96,11 +96,11 @@ var folderDatabase = new folderDB;
 function showNote() {
     // Create a new div element
     let newDiv = document.createElement("div");
-    newDiv.style.width = '40rem';
-    newDiv.style.height = '10rem';
+    // newDiv.style.width = '40rem';
+    // newDiv.style.height = '10rem';
     
     // Style
-    newDiv.style.backgroundColor = 'rgb(37, 183, 183)';
+    // newDiv.style.backgroundColor = 'rgb(37, 183, 183)';
     newDiv.classList.add('note');
     newDiv.innerHTML = document.getElementById("note-title-input").value;
     

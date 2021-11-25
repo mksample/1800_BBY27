@@ -39,7 +39,7 @@ class contentDB {
         let contentData = await this.getContentData(contentID);
 
         // Still need to write method for contentData --> HTML
-        // noteContent = this.constructContent(contentData);
+        noteContent = this.constructContent(contentData);
         return contentData;
     }
 
@@ -62,25 +62,37 @@ class contentDB {
         // construct content HTML from content data
         // return content HTML
 
-        // Create new elements for each content item
-        var contentLayout = document.createElement("div");
-        contentLayout.id = "contentDivID";
-        var contentTitleDiv = document.createElement("h2");
-        var contentBodyDiv = document.createElement("textarea");
+        // // Create new elements for each content item
+        // var contentLayout = document.createElement("div");
+        // contentLayout.id = "contentDivID";
+        // var contentTitleDiv = document.createElement("h2");
+        // var contentBodyDiv = document.createElement("textarea");
+
+        // // Set the elements to the values of the data
+        // contentTitleDiv.textContent = contentData.title + "\n";
+        // contentBodyDiv.innerHTML = contentData.body;
+
+        // // Style
+        // contentBodyDiv.style.width = '50%';
+
+        // // Add the elements to the page
+        // //document.body.appendChild(contentLayout);
+        // contentLayout.appendChild(contentTitleDiv);
+        // contentLayout.appendChild(contentBodyDiv);
+
+        // // Return content html
+        // return contentLayout;
+
+        // Get each element in content.html
+        var contentLayout = document.getElementById("contentTemplate");
+        var contentTitle = document.getElementById("contentTitle");
+        var contentBody = document.getElementById("contentBody");
 
         // Set the elements to the values of the data
-        contentTitleDiv.textContent = contentData.title + "\n";
-        contentBodyDiv.innerHTML = contentData.body;
+        contentTitle.textContent = contentData.title;
+        contentBody.innerHTML = contentData.body;
 
-        // Style
-        contentBodyDiv.style.width = '50%';
-
-        // Add the elements to the page
-        document.body.appendChild(contentLayout);
-        contentLayout.appendChild(contentTitleDiv);
-        contentLayout.appendChild(contentBodyDiv);
-
-        // Supposed to return the html element but might not work ?
+        // Return content html
         return contentLayout;
     }
 
