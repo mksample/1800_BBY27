@@ -15,7 +15,7 @@ class folderData {
 class folderDB {
 
     collection = "folders"
- 
+
     // Converts folder data into a normal object which can be stored.
     converter = {
         toFirestore: function (data) { // Converts to firestore data format when writing
@@ -75,7 +75,7 @@ class folderDB {
         let updateObj = {};
         if (folderData.name) {
             updateObj.name = folderData.name;
-        } 
+        }
         if (folderData.timestamp) {
             updateObj.timestamp = folderData.timestamp;
         }
@@ -96,18 +96,33 @@ var folderDatabase = new folderDB;
 function showNote() {
     // Create a new div element
     let newDiv = document.createElement("div");
-    // newDiv.style.width = '40rem';
-    // newDiv.style.height = '10rem';
-    
+    newDiv.style.width = '40rem';
+    newDiv.style.height = '10rem';
+
     // Style
     // newDiv.style.backgroundColor = 'rgb(37, 183, 183)';
     newDiv.classList.add('note');
     newDiv.innerHTML = document.getElementById("note-title-input").value;
-    
+
+
     // Add physical note to html of main page
     document.getElementById("notes").appendChild(newDiv);
 
+    var noteTitle =  document.getElementById("note-title-input").value
+    var noteText = document.getElementById("note-text-input").value
+
+    let noteInputDAT = new noteInputData();
+
+    let noteDatabase = new noteDB(contentDatabase, reminderDatabase, folderDatabase);
+    noteDatabase.createNote(new noteInputData("user1",
+        new contentData(noteTitle,noteText , "note template", firebase.firestore.Timestamp.now()),
+        new reminderData("reminder date", firebase.firestore.Timestamp.now()),
+        new folderData("folder name", firebase.firestore.Timestamp.now()),
+    ));
+
     // Clear input fields
-    document.getElementById("note-title-input").value = "";
-    document.getElementById("note-text-input").value = "";
+    
+
+    
+
 }

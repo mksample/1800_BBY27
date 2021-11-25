@@ -94,6 +94,7 @@ class reminderDB {
 
 // Create a reminderDatabase let for use outside the script.
 var reminderDatabase = new reminderDB;
+reminderDatabase.createReminder();
 
 //// WIP CODE ////
 
@@ -118,3 +119,4 @@ var reminderDatabase = new reminderDB;
 
   
 // });
+
