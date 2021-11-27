@@ -79,9 +79,11 @@ class reminderDB {
         let updateObj = {};
         if (reminderData.date) {
             updateObj.date = reminderData.date;
-        } 
+        } else {
+            updateObj.date = "";
+        }
         if (reminderData.timestamp) {
-            updateObj.date = reminderData.timestamp
+            updateObj.timestamp = reminderData.timestamp
         }
 
         updateObj.timestamp = firebase.firestore.Timestamp.now();

@@ -145,10 +145,10 @@ class noteDB {
             await this.contentDB.updateContent(noteRef.contentID, noteInputData.contentData);
         }
         if (noteInputData.reminderData) {
-            await this.reminderDB.updateContent(noteRef.reminderID, noteRef.reminderData);
+            await this.reminderDB.updateReminder(noteRef.reminderID, noteInputData.reminderData);
         }
         if (noteInputData.folderData) {
-            await this.contentDB.updateContent(noteRef.folderID, noteInputData.folderData);
+            await this.folderDB.updateFolder(noteRef.folderID, noteInputData.folderData);
         }
     }
 

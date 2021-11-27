@@ -89,6 +89,8 @@ class contentDB {
         }
         if (contentData.body) {
             updateObj.body = contentData.body;
+        } else {
+            updateObj.body = "";
         }
         if (contentData.template) {
             updateObj.template = contentData.template;

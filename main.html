@@ -152,19 +152,21 @@
     </div>
   </div>
 
-  <!-- expand note modal -->
+  <!-- Expand note modal -->
   <div class="modal fade" id="expandNoteModal" tabindex="-1" aria-labelledby="expandNoteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="expandNoteModalLabel">New Note</h5>
+          <input class="form-control" id="expandNoteTitle"/>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id = "expandNoteModalBody">
+        <div class="modal-body" id = "expandNoteBody">
+          <textarea id="expandNoteContent"></textarea>
+          <input type="date" class="form-control" id="expandNoteDate">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-          <button type="button" id="noteDeleteButton" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+          <button type="button" id="noteUpdateButton" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
         </div>
       </div>
     </div>
