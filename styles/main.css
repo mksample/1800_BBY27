@@ -4,7 +4,7 @@
 }
 
 /* Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html */
-.note {
+#notes .note {
     cursor: move;
     margin-bottom: 0.25rem;
     user-select: none;
@@ -21,6 +21,16 @@
     /* Misc */
     border: 1px solid #cbd5e0;
     background-color: rgb(37, 183, 183);
+}
+
+/* Hides the note title when displaying in the expanded note modal (modal title is modified to display note content title) */
+#expandNoteModalBody .note .noteContent .noteContentTitle {
+    display: none;
+}
+
+/* Hides the delete note button when displaying in the expanded note modal */
+#expandNoteModalBody .note #deleteNoteModalButton {
+    display: none;
 }
 
 .placeholder {

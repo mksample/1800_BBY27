@@ -33,10 +33,8 @@ class reminderDB {
     // Gets reminder HTML for a note.
     async getReminder(reminderID) {
         let reminderData = await this.getReminderData(reminderID);
-
-        // Still need to write method for reminderData --> HTML
-        // notereminder = this.constructreminder(reminderData);
-        return reminderData;
+        let reminder = this.constructReminder(reminderData);
+        return reminder;
     }
 
     // Gets reminder data.
@@ -55,8 +53,14 @@ class reminderDB {
 
     // UNFINISHED, transforms reminder data into an HTML element. 
     constructReminder(reminderData) {
-        // construct reminder HTML from reminder data
-        // return reminder HTML
+        // Get reminder temmplate
+        let ReminderTemplate = document.getElementById("NoteReminderTemplate");
+        let reminder = ReminderTemplate.content.cloneNode(true);
+
+        reminder.querySelector('.noteReminderDate').innerHTML = reminderData.date;
+        reminder.querySelector('.noteReminder').setAttribute("id", reminderData.id);
+
+        return reminder
     }
 
     // Writes reminder data.
@@ -94,29 +98,4 @@ class reminderDB {
 
 // Create a reminderDatabase let for use outside the script.
 var reminderDatabase = new reminderDB;
-reminderDatabase.createReminder();
-
-//// WIP CODE ////
-
-// $('#datetime').datetimepicker({
-  
-// });
-
-
-
-// //const db = firebase.firestore();
-// const form = document.getElementById("reminder-form");
-
-// form.addEventListener('submit', (e) => {
-//   event.preventDefault();
-
-//   //console.log(form.timeForm);
-//   const date = db.collection('reminders').add({
-//     date: form.timeForm.value
-    
-    
-//   })
-
-  
-// });
 

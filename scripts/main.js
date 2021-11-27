@@ -1,7 +1,21 @@
-// Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html
+ready(async function () {
+    // Wait for the user to fully sign in, then store the user and userID in variables
+    function getCurrentUser() {
+        return new Promise((resolve, reject) => {
+            const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+                unsubscribe();
+                resolve(user);
+            }, reject);
+        });
+    }
+    var user = await getCurrentUser(firebase.auth);
+    var userID = user.uid;
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Query the list element
+    // Section was taken from github, it creates event listeners for drag and drop functionality. Modified ot use absolute vertical positioning (instead of window)
+    // and also modified to not select any inner elements. Also modified was placeholder handling in the mouseUp function.
+    // Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html
+
+    // START SECTION //
     const list = document.getElementById('notes');
 
     let draggingEle;
@@ -30,16 +44,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const rectA = nodeA.getBoundingClientRect();
         const rectB = nodeB.getBoundingClientRect();
 
-        return rectA.top + rectA.height / 2 < rectB.top + rectB.height / 2;
+        return (rectA.top + window.scrollY) + rectA.height / 2 < (rectB.top + window.scrollY) + rectB.height / 2;
     };
 
     const mouseDownHandler = function (e) {
-        draggingEle = e.target;
+        draggingEle = e.currentTarget;
 
         // Calculate the mouse position
         const rect = draggingEle.getBoundingClientRect();
         x = e.pageX - rect.left;
-        y = e.pageY - rect.top;
+        y = e.pageY - (rect.top + window.scrollY);
 
         // Attach the listeners to `document`
         document.addEventListener('mousemove', mouseMoveHandler);
@@ -99,7 +113,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const mouseUpHandler = function () {
         // Remove the placeholder
-        placeholder && placeholder.parentNode.removeChild(placeholder);
+        if (placeholder != null && placeholder.parentNode != null) {
+            placeholder && placeholder.parentNode.removeChild(placeholder);
+        }
 
         draggingEle.style.removeProperty('top');
         draggingEle.style.removeProperty('left');
@@ -115,8 +131,91 @@ document.addEventListener('DOMContentLoaded', function () {
         document.removeEventListener('mouseup', mouseUpHandler);
     };
 
-    // Query all items
+    // Add event listener
     [].slice.call(list.querySelectorAll('.note')).forEach(function (item) {
         item.addEventListener('mousedown', mouseDownHandler);
     });
+    // END SECTION
+
+    // Display notes for the logged in user
+    async function displayNotes() {
+        let notesDOM = document.getElementById("notes");
+        await noteDatabase.getNotes(userID, function (note) {
+            let noteID = note.querySelector('.note').id;
+            notesDOM.appendChild(note); // for some reason once note is appended note.id can no longer be accessed
+
+            let appendedNote = document.getElementById(noteID);
+            appendedNote.addEventListener("mousedown", mouseDownHandler);
+        });
+        console.log("Done loading notes")
+    }
+    await displayNotes();
+
+    // Event handler for creating a new note.
+    document.querySelector("#noteInputCreateButton").addEventListener("click", async function (e) {
+        let contentTitle = document.getElementById("noteInputContentTitle").value;
+        let contentText = document.getElementById("noteInputContentBody").value;
+        let reminderDate = document.getElementById("noteInputReminderDate").value;
+
+        let noteID = await noteDatabase.createNote(new noteInputData(userID,
+            new contentData(contentTitle, contentText, "placeholder", firebase.firestore.Timestamp.now()),
+            new reminderData(reminderDate, firebase.firestore.Timestamp.now()),
+            new folderData("placeholder", firebase.firestore.Timestamp.now()),
+        ));
+
+        let notesDOM = document.getElementById("notes");
+        notesDOM.appendChild(await noteDatabase.getNote(noteID));
+
+        let noteDOM = document.getElementById(noteID);
+
+        noteDOM.addEventListener('mousedown', mouseDownHandler);
+        noteDOM.scrollIntoView();
+
+        $("#" + noteID).delay(100).fadeOut().fadeIn('slow');
+    });
+
+    // Event handler for deleting a note.
+    document.querySelector("#noteDeleteButton").addEventListener("click", async function(e) {
+        let noteID = e.currentTarget.parentNode.parentNode.parentNode.parentNode.getAttribute("data-noteID");
+        noteDatabase.deleteNote(noteID);
+        
+        let deletedNote = document.getElementById(noteID);
+        $("#" + noteID).delay(100).fadeOut('slow', function() {
+            deletedNote.parentNode.removeChild(deletedNote);
+        });
+    });
+
+    // Listerer that helps the delete note handler know what note to delete.
+    document.querySelectorAll("#deleteNoteModalButton").forEach(function (item) {
+        item.addEventListener("click", function(e) {
+            let noteID = e.currentTarget.parentNode.getAttribute("id");
+            document.getElementById("deleteNoteModal").setAttribute("data-noteID", noteID);
+        });
+    });
+
+    // Event handler for expanding a note (uses jQuery).
+    $(".note").click(function(e){
+        let note = e.currentTarget;
+
+        let modalBody = document.getElementById('expandNoteModalBody')
+        while (modalBody.firstChild) {
+            modalBody.removeChild(modalBody.firstChild);
+        }
+        document.getElementById('expandNoteModalBody').appendChild(note.cloneNode(true));
+        modalBody.firstChild.removeEventListener('mousedown', mouseDownHandler);
+        document.getElementById('expandNoteModalLabel').innerHTML = note.querySelector('.noteContentTitle').innerHTML;
+
+        $("#expandNoteModal").modal('show');
+    });
+
 });
+
+function ready(callback) {
+    if (document.readyState != "loading") {
+        callback();
+        console.log("ready state is 'complete'");
+    } else {
+        document.addEventListener("DOMContentLoaded", callback);
+        console.log("Listener was invoked");
+    }
+}
