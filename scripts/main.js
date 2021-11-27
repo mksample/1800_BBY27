@@ -10,21 +10,39 @@ ready(async function () {
     }
     var user = await getCurrentUser(firebase.auth);
     var userID = user.uid;
-    
-    // Event handler for expanding a note (uses jQuery).
-    const expandNote = function(e){
-        let note = e.currentTarget;
 
+    // Event handler for expanding a note (uses jQuery).
+    const expandNote = function (e) {
+        let note = e.currentTarget.cloneNode(true);
         let modalBody = document.getElementById('expandNoteModalBody')
+        let modalTitle = document.getElementById('expandNoteModalLabel')
         while (modalBody.firstChild) {
             modalBody.removeChild(modalBody.firstChild);
         }
-        document.getElementById('expandNoteModalBody').appendChild(note.cloneNode(true));
-        modalBody.firstChild.removeEventListener('mousedown', mouseDownHandler);
-        document.getElementById('expandNoteModalLabel').innerHTML = note.querySelector('.noteContentTitle').innerHTML;
 
-        $("#expandNoteModal").modal('show');
+        modalTitle.innerHTML = note.querySelector('.noteContentTitle').innerHTML;
+        modalBody.appendChild(note);
+        modalBody.firstChild.removeEventListener('mousedown', mouseDownHandler);
+
+        $("#expandNoteModal").modal('toggle');
+        console.log("doimakeit")
     };
+
+    // On expanded note modal close, remove note clone.
+    $('#expandNoteModal').on('hide.bs.modal', function (e) {
+        let modalBody = document.getElementById('expandNoteModalBody');
+        while (modalBody.firstChild) {
+            modalBody.removeChild(modalBody.firstChild);
+        };
+    });
+
+    // Listerer that helps the delete note handler know what note to delete.
+    const setModalNoteID = function (e) {
+        e.stopImmediatePropagation();
+        let noteID = e.currentTarget.parentNode.getAttribute("id");
+        document.getElementById("deleteNoteModal").setAttribute("data-noteID", noteID);
+    };
+
 
     // Section was taken from github, it creates event listeners for drag and drop functionality. Modified ot use absolute vertical positioning (instead of window)
     // and also modified to not select any inner elements. Also modified was placeholder handling in the mouseUp function.
@@ -162,6 +180,7 @@ ready(async function () {
             let appendedNote = document.getElementById(noteID);
             appendedNote.addEventListener("mousedown", mouseDownHandler);
             appendedNote.addEventListener("click", expandNote);
+            appendedNote.querySelector("#deleteNoteModalButton").addEventListener("click", setModalNoteID)
         });
         console.log("Done loading notes")
     }
@@ -185,33 +204,26 @@ ready(async function () {
         let noteDOM = document.getElementById(noteID);
 
         noteDOM.addEventListener('mousedown', mouseDownHandler);
-        appendedNote.addEventListener("click", expandNote);
+        noteDOM.addEventListener("click", expandNote);
+        noteDOM.querySelector("#deleteNoteModalButton").addEventListener("click", setModalNoteID)
         noteDOM.scrollIntoView();
 
         $("#" + noteID).delay(100).fadeOut().fadeIn('slow');
     });
 
     // Event handler for deleting a note.
-    document.querySelector("#noteDeleteButton").addEventListener("click", async function(e) {
+    document.querySelector("#noteDeleteButton").addEventListener("click", async function (e) {
         let noteID = e.currentTarget.parentNode.parentNode.parentNode.parentNode.getAttribute("data-noteID");
-        noteDatabase.deleteNote(noteID);
         
         let deletedNote = document.getElementById(noteID);
-        $("#" + noteID).delay(100).fadeOut('slow', function() {
-            deletedNote.parentNode.removeChild(deletedNote);
+        let parent = deletedNote.parentNode;
+        
+        $("#" + noteID).delay(100).fadeOut('slow', function () {
+            parent.removeChild(deletedNote);
         });
+
+        noteDatabase.deleteNote(noteID);
     });
-
-    // Listerer that helps the delete note handler know what note to delete.
-    document.querySelectorAll("#deleteNoteModalButton").forEach(function (item) {
-        item.addEventListener("click", function(e) {
-            e.stopImmediatePropagation();
-            let noteID = e.currentTarget.parentNode.getAttribute("id");
-            document.getElementById("deleteNoteModal").setAttribute("data-noteID", noteID);
-        });
-    });
-
-
 });
 
 function ready(callback) {
