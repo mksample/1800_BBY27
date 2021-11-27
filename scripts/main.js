@@ -10,6 +10,21 @@ ready(async function () {
     }
     var user = await getCurrentUser(firebase.auth);
     var userID = user.uid;
+    
+    // Event handler for expanding a note (uses jQuery).
+    const expandNote = function(e){
+        let note = e.currentTarget;
+
+        let modalBody = document.getElementById('expandNoteModalBody')
+        while (modalBody.firstChild) {
+            modalBody.removeChild(modalBody.firstChild);
+        }
+        document.getElementById('expandNoteModalBody').appendChild(note.cloneNode(true));
+        modalBody.firstChild.removeEventListener('mousedown', mouseDownHandler);
+        document.getElementById('expandNoteModalLabel').innerHTML = note.querySelector('.noteContentTitle').innerHTML;
+
+        $("#expandNoteModal").modal('show');
+    };
 
     // Section was taken from github, it creates event listeners for drag and drop functionality. Modified ot use absolute vertical positioning (instead of window)
     // and also modified to not select any inner elements. Also modified was placeholder handling in the mouseUp function.
@@ -146,6 +161,7 @@ ready(async function () {
 
             let appendedNote = document.getElementById(noteID);
             appendedNote.addEventListener("mousedown", mouseDownHandler);
+            appendedNote.addEventListener("click", expandNote);
         });
         console.log("Done loading notes")
     }
@@ -169,6 +185,7 @@ ready(async function () {
         let noteDOM = document.getElementById(noteID);
 
         noteDOM.addEventListener('mousedown', mouseDownHandler);
+        appendedNote.addEventListener("click", expandNote);
         noteDOM.scrollIntoView();
 
         $("#" + noteID).delay(100).fadeOut().fadeIn('slow');
@@ -188,25 +205,12 @@ ready(async function () {
     // Listerer that helps the delete note handler know what note to delete.
     document.querySelectorAll("#deleteNoteModalButton").forEach(function (item) {
         item.addEventListener("click", function(e) {
+            e.stopImmediatePropagation();
             let noteID = e.currentTarget.parentNode.getAttribute("id");
             document.getElementById("deleteNoteModal").setAttribute("data-noteID", noteID);
         });
     });
 
-    // Event handler for expanding a note (uses jQuery).
-    $(".note").click(function(e){
-        let note = e.currentTarget;
-
-        let modalBody = document.getElementById('expandNoteModalBody')
-        while (modalBody.firstChild) {
-            modalBody.removeChild(modalBody.firstChild);
-        }
-        document.getElementById('expandNoteModalBody').appendChild(note.cloneNode(true));
-        modalBody.firstChild.removeEventListener('mousedown', mouseDownHandler);
-        document.getElementById('expandNoteModalLabel').innerHTML = note.querySelector('.noteContentTitle').innerHTML;
-
-        $("#expandNoteModal").modal('show');
-    });
 
 });
 
