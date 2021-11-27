@@ -37,10 +37,8 @@ class contentDB {
     // Gets content HTML for a note.
     async getContent(contentID) {
         let contentData = await this.getContentData(contentID);
-
-        // Still need to write method for contentData --> HTML
-        noteContent = this.constructContent(contentData);
-        return contentData;
+        let content = this.constructContent(contentData);
+        return content;
     }
 
     // Gets content data.
@@ -59,20 +57,17 @@ class contentDB {
 
     // Transforms content data into an HTML element. 
     constructContent(contentData) {
-        // construct content HTML from content data
-        // return content HTML
+        // Get content temmplate
+        let ContentTemplate = document.getElementById("NoteContentTemplate");
+        let content = ContentTemplate.content.cloneNode(true);
 
-        // Get each element in content.html
-        var contentLayout = document.getElementById("contentTemplate");
-        var contentTitle = document.getElementById("contentTitle");
-        var contentBody = document.getElementById("contentBody");
+        content.querySelector('.noteContentTitle').innerHTML = contentData.title;
+        content.querySelector('.noteContentBody').innerHTML = contentData.body;
 
-        // Set the elements to the values of the data
-        contentTitle.textContent = contentData.title;
-        contentBody.innerHTML = contentData.body;
+        // Set element ID
+        content.querySelector('.noteContent').setAttribute("id", contentData.id);
 
-        // Return content html
-        return contentLayout;
+        return content;
     }
 
     // Writes content data.
@@ -114,28 +109,3 @@ class contentDB {
 
 // Create a contentDatabase let for use outside the script.
 var contentDatabase = new contentDB;
-
-
-// Displays users name on main.html page
-function insertName() {
-    firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
-        if (user) {
-            // Do something for the current logged-in user here: 
-            console.log(user.uid);
-            //go to the correct user document by referencing to the user uid
-            currentUser = db.collection("users").doc(user.uid);
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    var user_Name = userDoc.data().name;
-                    console.log(user_Name);
-                    // Insert using jquery
-                    $("#username").text(user_Name + "'s Notes");
-                })
-        } else {
-            // No user is signed in.
-        }
-    });
-}
-insertName();

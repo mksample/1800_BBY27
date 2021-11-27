@@ -48,8 +48,8 @@ class noteDB {
         }
     }
 
-    // gets all note HTML elements associated with a user.
-    async getNotes(userID) {
+    // gets all notes and runs a callback for each note
+    async getNotes(userID, callback) {
         let noteSnapshots = await this.getUserNotesData(userID);
 
         let noteDatas = [];
@@ -57,34 +57,38 @@ class noteDB {
             noteDatas.push(noteSnap.data());
         });
 
-        let notes = [];
         for (let noteData of noteDatas) {
             let note = await this.constructNote(noteData);
-            notes.push(note);
+            callback(note);
         }
+    }
 
-        console.log(notes);
+    // gets a note with a noteID. 
+    async getNote(noteID) {
+        let noteData = await this.getNoteData(noteID);
+        let note = this.constructNote(noteData);
+        return note;
     }
 
     // constructs a note HTML element from content and reminder HTML elements.
     async constructNote(noteData) {
         // Get note from template
-        let NoteTemplate = document.getElementById("NoteTemplate"); // SELECT THE DOCUMENT FIRST LMAO
+        let NoteTemplate = document.getElementById("NoteTemplate");
         let note = NoteTemplate.content.cloneNode(true);
-        
-        console.log(note);
 
         // Insert content into note
         let content = await this.contentDB.getContent(noteData.contentID);
-        note.querySelector('.noteContent').innerHTML = content;
+        let blankContent = note.querySelector(".noteContent");
+        blankContent.parentNode.replaceChild(content, blankContent)
 
         // Insert reminder into note
         let reminder = await this.reminderDB.getReminder(noteData.reminderID);
-        note.querySelector('.noteReminder').innerHTML = reminder;
+        let blankReminder = note.querySelector(".noteReminder");
+        blankReminder.parentNode.replaceChild(reminder, blankReminder);
 
         // Set element ID
         note.querySelector('.note').setAttribute("id", noteData.id);
-
+        
         return note
     }
 
