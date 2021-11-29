@@ -15,8 +15,8 @@
     justify-content: center;
 
     /* Size */
-    height: 10rem;
-    width: 40rem;
+    height: 20vh;
+    width: 100vw;
 
     /* Misc */
     border: 1px solid #cbd5e0;
@@ -31,4 +31,40 @@
 
 #username {
     text-shadow: 0 1px 4px rgb(37, 183, 183);
+}
+
+.modal-content {
+    outline:none;
+    
+    background-color: rgb(95, 150, 145);
+}
+
+.col-form-label {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.mb-3 {
+    text-align: center;
+}
+
+/* .form-control {
+    text-align: center;
+} */
+
+.modal-footer {
+    border-top: none;
+    justify-content: space-between;
+}
+
+#button-arrangement {
+    display: flex;
+    align-items: center;
+}
+
+.material-icons {
+    font-size: 30px;
+    padding: 5px;
+
 }
