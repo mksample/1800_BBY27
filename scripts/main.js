@@ -35,14 +35,17 @@ ready(async function () {
     const setDeleteModalNoteID = function (e) {
         e.stopImmediatePropagation();
         let noteID = e.currentTarget.parentNode.getAttribute("id");
-        document.getElementById("deleteNoteModal").setAttribute("data-noteID", noteID);
+        let note = document.getElementById(noteID);
+
+        modal = document.getElementById("deleteNoteModal");
+        modal.setAttribute("data-noteID", noteID);
+        modal.querySelector("#deleteNoteModalLabel").innerHTML = note.querySelector('.noteContentTitle').innerHTML;
     };
 
     // Listerer that helps the delete note handler know what note to delete.
     const setExpandModalNoteID = function (e) {
         let noteID = e.currentTarget.getAttribute("id");
         document.getElementById("expandNoteModal").setAttribute("data-noteID", noteID);
-        console.log("fired")
     };
 
 
@@ -212,6 +215,10 @@ ready(async function () {
         noteDOM.scrollIntoView();
 
         $("#" + noteID).delay(100).fadeOut().fadeIn('slow');
+
+        document.getElementById("noteInputContentTitle").value = "";
+        document.getElementById("noteInputContentBody").value = "";
+        document.getElementById("noteInputReminderDate").value = "";
     });
 
     // Event handler for deleting a note.
@@ -228,6 +235,7 @@ ready(async function () {
         noteDatabase.deleteNote(noteID);
     });
 
+    // Event handler for updating a note.
     document.querySelector("#noteUpdateButton").addEventListener("click", async function (e) {
         let noteID = e.currentTarget.parentNode.parentNode.parentNode.parentNode.getAttribute("data-noteID");
         let oldNote = document.getElementById(noteID);
