@@ -1,0 +1,15 @@
+.material-icons {
+    color: blue;
+}
+
+#collapseOne {
+    background-color: rgb(215, 240, 255);
+}
+
+#collapseTwo {
+    background-color: rgb(255, 212, 212);
+}
+
+#collapseThree {
+    background-color: rgb(228, 255, 228);
+}

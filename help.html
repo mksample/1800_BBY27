@@ -52,46 +52,8 @@
         </div>
     </nav>
 
-    <!-- Topic navigation -->
-    <!-- <div id="help-topics">
-        <a href="#help-topic-1">Topic 1</a>
-        <a href="#help-topic-2">Topic 2</a>
-        <a href="#help-topic-3">Topic 3</a>
-    </div> -->
 
-    <!-- Help topics -->
-    <!-- <div id="content">
-        <div id="help-topic-1">
-            Topic 1
-        </div>
-        <div id="help-topic-2">
-            Topic 2
-        </div>
-        <div id="help-topic-3">
-            Topic 3
-        </div>
-    </div> -->
-
-
-    <!-- <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-            aria-controls="collapseExample">
-            Link with href
-        </a>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-            aria-expanded="false" aria-controls="collapseExample">
-            Button with data-bs-target
-        </button>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the
-            user activates the relevant trigger.
-        </div>
-    </div> -->
-
-
-
+    <!-- Accordion displays help topics -->
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -103,17 +65,11 @@
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>To Create A Note:</strong> 
-                    <!-- It is shown by default, until the collapse
-                    plugin adds the appropriate classes that we use to style each element. These classes control the
-                    overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                    this with custom CSS or overriding our default variables. It's also worth noting that just about any
-                    HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                    <img src="/images/logo.jpg" alt="logo" width="100px" height="100px"> -->
-                    
+                    <strong>To Create a Note:</strong> 
                     <ol>
                         <li>Press the <i class="material-icons">add_circle_outline</i> icon</li>
                         <li>Type the new note title and text in the textfields</li>
+                        <li>Set a reminder (optional)</li>
                         <li>Press the Add Note button</li>
                     </ol>
                 </div>
@@ -123,18 +79,17 @@
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Remove a Note
+                    Delete a Note
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
+                    <strong>To Delete a Note:</strong>
+                    <ol>
+                        <li>Press the <i class="material-icons">delete</i> icon</li>
+                        <li>Press the Delete Button on the popup that appears</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -142,23 +97,24 @@
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Set a Reminder
+                    Edit a Note
                 </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
+                    <strong>To Edit a Note:</strong>
+                    <ol>
+                        <li>Click on the note you want to edit</li>
+                        <li>Edit the fields you want to change</li>
+                        <li>Press the Save button</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
 
+    
     <!-- JavaScript -->
     <script src="/scripts/help.js"></script>
 </body>
