@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>My BCIT Project</title>
+  <title>Index Page</title>
   <meta name="comp1800 boilerplate code" content="my bcit project">
   <meta name="author" content="BCIT">
 
@@ -12,7 +12,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Style -->
-  <link rel="stylesheet" href="./styles/my_style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&display=swap" rel="stylesheet">
@@ -21,13 +20,16 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+  <!-- CSS Style -->
+  <link rel="stylesheet" href="./styles/index.css" />
+
   <!-- Google Icons (Material Design)-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
-
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Note App</a>
@@ -44,18 +46,16 @@
             <a class="nav-link" href="login.html">Login</a>
           </li>
         </ul>
-        <!-- <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-info" type="submit">Search</button>
-        </form> -->
       </div>
     </div>
   </nav>
 
+  <!-- App Title/Jumbotron -->
   <div class="px-4 py-5 my-5 text-center" id="welcome-content">
     <img id="note-logo" class="d-block mx-auto mb-4" src="images/logo.jpg" alt="logo" width="144" height="114">
     <h1 class="display-5 fw-bold">Welcome to the Note App!</h1>
 
+    <!-- App description -->
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Create notes, organize them, and set reminders!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -65,27 +65,15 @@
     </div>
   </div>
 
-  <br><br>
 
-  <!-- <footer class="navbar justify-content-evenly bg-info fixed-bottom">
-    <i class="material-icons">settings</i>
-    <i class="material-icons">notifications</i>
-    <a href="login.html"><i class="material-icons">login</i></a>
-  </footer> -->
 
-  <!--------------------------------------------------->
-  <!-- Your Javascript Libraries and scripts go here -->
-  <!--------------------------------------------------->
-
-  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <!-- Javascript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-
-  <!-- Waleed was here. -->
 </body>
 
 </html>

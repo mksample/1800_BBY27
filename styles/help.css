@@ -1,7 +1,16 @@
+/* HELP.HTML */
+
+/* Body */
+body {
+    font-family: 'Arimo', sans-serif;
+}
+
+/* Icons */
 .material-icons {
     color: blue;
 }
 
+/* Accordions */
 #collapseOne {
     background-color: rgb(215, 240, 255);
 }
