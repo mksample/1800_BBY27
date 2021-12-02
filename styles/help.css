@@ -22,3 +22,7 @@ body {
 #collapseThree {
     background-color: rgb(228, 255, 228);
 }
+
+.bg-light {
+    background-color: #FFEDE1!important;
+}

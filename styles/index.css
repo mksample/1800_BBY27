@@ -3,7 +3,7 @@
 /* Body */
 body {
     font-family: 'Arimo', sans-serif;
-    background: linear-gradient(0.25turn, #a3bcf9, #eee5bf, #7796cb);
+    background: linear-gradient(0.25turn, #a3bcf9, #FFEDE1, #7796cb);
 }
 
 /* Note image logo */
@@ -27,4 +27,8 @@ body {
     color: #a3bcf9;
     background-color: #EFF6E0;
     border-color: #576490;
+}
+
+.bg-light {
+    background-color: #FFEDE1!important;
 }
