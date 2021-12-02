@@ -1,29 +1,11 @@
-
-
 #content {
     text-align: -webkit-center;
     justify-content: center; 
     font-family: 'Arimo', sans-serif;
 }
 
-/* Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html */
-#notes .note {
-    cursor: move;
-    margin-bottom: 0.25rem;
-    user-select: none;
-
-
-    align-items: center;
-
-    justify-content: center;
-
-    /* Size */
-    height: 10rem;
-    width: 95vw;
-
-    /* Misc */
-    border: 1px solid #cbd5e0;
-
+textarea {
+    height: 300px;
 }
 
 .placeholder {
@@ -35,7 +17,7 @@
 .modal-content {
     outline:none;
     
-    background-color: rgb(95, 150, 145);
+    background-color: #A3BCF9;
 }
 
 .col-form-label {
@@ -62,17 +44,7 @@
     font-size: 30px;
     padding: 5px;
 
-}
-
-.noteContent .noteContentTitle {
-    color:black;
-    font-size: 24pt;
-    font-weight: 600;
-}
-
-.noteContent .noteContentBody {
-    color:black;
-    font-size: 16pt;
+    color: #576490;
 }
 
 .noteDate {
@@ -100,8 +72,23 @@
 .note {
     display: grid;
     grid-template-columns: 10% 20% 40% 20% 10%;
-    grid-template-rows: 75% 25%;
+    grid-template-rows: 85% 15%;
     background-color: #D1D2F9;
+    cursor: move;
+    margin-bottom: 0.25rem;
+    user-select: none;
+
+
+    align-items: center;
+
+    justify-content: center;
+
+    /* Size */
+    height: 10rem;
+    width: 95vw;
+
+    /* Misc */
+    border: 1px solid #cbd5e0;
 }
 
 .noteContent {
@@ -109,17 +96,28 @@
     grid-column: 1 / span 5;
     display: grid;
     align-items: center;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: 30% 70%;
     text-align: center;
+    max-height: 100%;
+    color:black;
 }
 
 .noteContentTitle {
     font-size: larger;
     grid-row: 1 / span 1;
+    font-size: 24pt;
+    font-weight: 600;
 }
 
 .noteContentBody {  
+    white-space: pre-wrap;
     grid-row: 2 / span 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #576490;
+    font-size: 16pt;
+    padding: 2px;
+    max-height: 100%;
 }
 
 .noteReminder {
@@ -139,15 +137,13 @@
     color:black;
 }
 
-footer .material-icons {
-    font-size: 35px;
-    color: darkblue;
-}
-
 .bg-info {
     background-color: #FFEDE1!important;
 }
 
+.bg-light {
+    background-color: #FFEDE1!important;
+}
 
 #username {
     text-shadow: 0 1px 4px rgb(37, 183, 183);
