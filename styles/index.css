@@ -9,7 +9,7 @@ body {
 /* Note image logo */
 #note-logo {
     border-radius: 50%;
-    border: 2px double #576490;
+    /* border: 2px double #576490; */
 }
 
 /* Button */
