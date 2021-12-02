@@ -8,6 +8,10 @@ textarea {
     height: 300px;
 }
 
+body {
+    padding-bottom: 60px;
+}
+
 .placeholder {
     background-color: #ECF1FE;
     border: 2px dashed #cbd5e0;
