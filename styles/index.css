@@ -1,0 +1,34 @@
+/* INDEX.HTML */
+
+/* Body */
+body {
+    font-family: 'Arimo', sans-serif;
+    background: linear-gradient(0.25turn, #a3bcf9, #FFEDE1, #7796cb);
+}
+
+/* Note image logo */
+#note-logo {
+    border-radius: 50%;
+    border: 2px double #576490;
+}
+
+/* Button */
+.bg-info {
+    background-color: #d1d2f9 !important;
+}
+
+.btn-primary {
+    color: #576490;
+    background-color: #d1d2f9;
+    border-color: #576490;
+}
+
+.btn-primary:hover {
+    color: #a3bcf9;
+    background-color: #EFF6E0;
+    border-color: #576490;
+}
+
+.bg-light {
+    background-color: #FFEDE1!important;
+}

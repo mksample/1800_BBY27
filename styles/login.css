@@ -1,0 +1,47 @@
+/* LOGIN.HTML */
+
+/* Body */
+body {
+    background-image: url(../images/purple-blue-pastel.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-family: 'Arimo', sans-serif;
+}
+
+/* Main content div */
+#main-content {
+    height: 80vh;
+}
+
+/* Navbar */
+.bg-info {
+    background-color: #f8f9fa!important;
+}
+
+/* Title and description */
+.display-6 {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Form */
+form {
+    background-image: url(../images/paper.jpg);
+}
+
+/* Login button */
+.mdl-button--raised.mdl-button--colored {
+    background: rgb(218, 179, 255);
+    color: rgb(255,255,255);
+}
+
+/* Login form */
+form {
+    background-image: url(../images/paper.jpg);
+}
+
+.firebaseui-container {
+    font-family: 'Arimo', sans-serif;
+}

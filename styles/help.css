@@ -1,0 +1,28 @@
+/* HELP.HTML */
+
+/* Body */
+body {
+    font-family: 'Arimo', sans-serif;
+}
+
+/* Icons */
+.material-icons {
+    color: blue;
+}
+
+/* Accordions */
+#collapseOne {
+    background-color: rgb(215, 240, 255);
+}
+
+#collapseTwo {
+    background-color: rgb(255, 212, 212);
+}
+
+#collapseThree {
+    background-color: rgb(228, 255, 228);
+}
+
+.bg-light {
+    background-color: #FFEDE1!important;
+}
