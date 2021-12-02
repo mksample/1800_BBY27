@@ -12,6 +12,35 @@ ready(async function () {
     var userID = user.uid;
     var dragged;
 
+    const deviceType = () => {
+        const ua = navigator.userAgent;
+        if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            return "mobile";
+        }
+        return "desktop";
+    };
+
+    const mouseDownEvent = () => {
+        if (deviceType() == "mobile") {
+            return "touchstart";
+        }
+        return "mousedown";
+    }
+
+    const mouseUpEvent = () => {
+        if (deviceType() == "mobile") {
+            return "touchend";
+        }
+        return "mouseup";
+    }
+
+    const mouseMoveEvent = () => {
+        if (deviceType() == "mobile") {
+            return "touchmove";
+        }
+        return "mousemove"
+    }
+
     // Event handler for expanding a note (uses jQuery).
     const expandNote = function (e) {
         if (dragged) {
@@ -49,8 +78,9 @@ ready(async function () {
     };
 
 
-    // Section was taken from github, it creates event listeners for drag and drop functionality. Modified ot use absolute vertical positioning (instead of window)
-    // and also modified to not select any inner elements. Also modified was placeholder handling in the mouseUp function.
+    // Section was taken from github, it creates event listeners for drag and drop functionality. Modified to use absolute vertical positioning (instead of window)
+    // and to not select any inner elements. Also modified was placeholder handling in the mouseUp function.
+    // Modified one last time to work for mobile and desktop event types.
     // Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html
 
     // START SECTION //
@@ -90,15 +120,23 @@ ready(async function () {
 
         // Calculate the mouse position
         const rect = draggingEle.getBoundingClientRect();
-        x = e.pageX - rect.left;
-        y = e.pageY - (rect.top + window.scrollY);
+        if (deviceType() == "mobile") {
+            x = e.touches[0].pageX - rect.left;
+            y = e.touches[0].pageY - (rect.top + window.scrollY);
+        } else {
+            x = e.pageX - rect.left;
+            y = e.pageY - (rect.top + window.scrollY);
+        }
 
         // Attach the listeners to `document`
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
+        document.addEventListener(mouseMoveEvent(), mouseMoveHandler, { passive: false });
+        document.addEventListener(mouseUpEvent(), mouseUpHandler);
     };
 
     const mouseMoveHandler = function (e) {
+        if (deviceType() == "mobile") {
+            e.preventDefault();
+        }
         const draggingRect = draggingEle.getBoundingClientRect();
         if (!isDraggingStarted) {
             isDraggingStarted = true;
@@ -113,8 +151,13 @@ ready(async function () {
 
         // Set position for dragging element
         draggingEle.style.position = 'absolute';
-        draggingEle.style.top = `${e.pageY - y}px`;
-        draggingEle.style.left = `${e.pageX - x}px`;
+        if (deviceType() == "mobile") {
+            draggingEle.style.top = `${e.touches[0].pageY - y}px`
+            draggingEle.style.left = `${e.touches[0].pageX -x}px`
+        } else {
+            draggingEle.style.top = `${e.pageY - y}px`;
+            draggingEle.style.left = `${e.pageX - x}px`;
+        }
 
         // The current order
         // prevEle
@@ -164,13 +207,13 @@ ready(async function () {
         isDraggingStarted = false;
 
         // Remove the handlers of `mousemove` and `mouseup`
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
+        document.removeEventListener(mouseMoveEvent(), mouseMoveHandler);
+        document.removeEventListener(mouseUpEvent(), mouseUpHandler);
     };
 
     // Add event listener
     [].slice.call(list.querySelectorAll('.note')).forEach(function (item) {
-        item.addEventListener('mousedown', mouseDownHandler);
+        item.addEventListener(mouseDownEvent(), mouseDownHandler);
     });
     // END SECTION
 
@@ -182,7 +225,7 @@ ready(async function () {
             notesDOM.appendChild(note); // for some reason once note is appended note.id can no longer be accessed
 
             let appendedNote = document.getElementById(noteID);
-            appendedNote.addEventListener("mousedown", mouseDownHandler);
+            appendedNote.addEventListener(mouseDownEvent(), mouseDownHandler);
             appendedNote.addEventListener("click", expandNote);
             appendedNote.querySelector("#deleteNoteModalButton").addEventListener("click", setDeleteModalNoteID);
             appendedNote.addEventListener("click", setExpandModalNoteID);
@@ -208,7 +251,7 @@ ready(async function () {
 
         let noteDOM = document.getElementById(noteID);
 
-        noteDOM.addEventListener('mousedown', mouseDownHandler);
+        noteDOM.addEventListener(mouseDownEvent(), mouseDownHandler);
         noteDOM.addEventListener("click", expandNote);
         noteDOM.addEventListener("click", setExpandModalNoteID);
         noteDOM.querySelector("#deleteNoteModalButton").addEventListener("click", setDeleteModalNoteID)
@@ -255,7 +298,7 @@ ready(async function () {
         notesDOM.replaceChild(newNote, oldNote);
 
         let appendedNote = document.getElementById(noteID);
-        appendedNote.addEventListener("mousedown", mouseDownHandler);
+        appendedNote.addEventListener(mouseDownEvent(), mouseDownHandler);
         appendedNote.addEventListener("click", expandNote);
         appendedNote.querySelector("#deleteNoteModalButton").addEventListener("click", setDeleteModalNoteID);
         appendedNote.addEventListener("click", setExpandModalNoteID);
