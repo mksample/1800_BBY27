@@ -1,6 +1,9 @@
+
+
 #content {
-    display: flex;
-    justify-content: center;
+    text-align: -webkit-center;
+    justify-content: center; 
+    font-family: 'Arimo', sans-serif;
 }
 
 /* Reference: https://github.com/1milligram/html-dom/blob/master/public/demo/drag-and-drop-element-in-a-list/index.html */
@@ -9,18 +12,18 @@
     margin-bottom: 0.25rem;
     user-select: none;
 
-    /* Center the content */
+
     align-items: center;
-    display: flex;
+
     justify-content: center;
 
     /* Size */
     height: 10rem;
-    width: 40rem;
+    width: 95vw;
 
     /* Misc */
     border: 1px solid #cbd5e0;
-    background-color: rgb(37, 183, 183);
+
 }
 
 .placeholder {
@@ -29,12 +32,47 @@
     margin-bottom: 0.25rem;
 }
 
+.modal-content {
+    outline:none;
+    
+    background-color: rgb(95, 150, 145);
+}
+
+.col-form-label {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.mb-3 {
+    text-align: center;
+}
+
+.modal-footer {
+    border-top: none;
+    justify-content: space-between;
+}
+
+#button-arrangement {
+    display: flex;
+    align-items: center;
+}
+
+.material-icons {
+    font-size: 30px;
+    padding: 5px;
+
+}
+
 .noteContent .noteContentTitle {
-    color: blue;
+    color:black;
+    font-size: 24pt;
+    font-weight: 600;
 }
 
 .noteContent .noteContentBody {
-    color: red;
+    color:black;
+    font-size: 16pt;
 }
 
 .noteDate {
@@ -42,23 +80,80 @@
 }
 
 #expandNoteTitle {
-    color: pink
+    color: black
+
 }
 
 #expandNoteContent {
-    color: orange;
+    color: black;
 }
 
 #expandNoteDate {
-    color: yellow;
+    color: black;
 }
 
 #deleteNoteModalLabel {
-    color: brown;
+    color: black;
 }
 
+
+.note {
+    display: grid;
+    grid-template-columns: 10% 20% 40% 20% 10%;
+    grid-template-rows: 75% 25%;
+    background-color: #D1D2F9;
+}
+
+.noteContent {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 5;
+    display: grid;
+    align-items: center;
+    grid-template-rows: 40% 60%;
+    text-align: center;
+}
+
+.noteContentTitle {
+    font-size: larger;
+    grid-row: 1 / span 1;
+}
+
+.noteContentBody {  
+    grid-row: 2 / span 1;
+}
+
+.noteReminder {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 5;
+    text-align: center;
+    font-size: larger;
+}
+
+#deleteNoteModalButton {
+    grid-column: 5 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.deleteNoteModalButton #material-icon {
+    vertical-align: middle;
+    color:black;
+}
+
+footer .material-icons {
+    font-size: 35px;
+    color: darkblue;
+}
+
+.bg-info {
+    background-color: #FFEDE1!important;
+}
 
 
 #username {
     text-shadow: 0 1px 4px rgb(37, 183, 183);
 }
+
+#expandNoteContent {
+    width: 100%;
+}
+

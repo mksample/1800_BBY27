@@ -21,6 +21,11 @@
   <!-- Style -->
   <link rel="stylesheet" href="/styles/main.css" />
 
+  <!-- Arimo Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Hind:wght@300&display=swap" rel="stylesheet">
+
   <!-- Firebase 8 CDNs-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
@@ -105,10 +110,6 @@
   <div class="modal fade" id="createNoteModal" tabindex="-1" aria-labelledby="createNoteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="createNoteModalLabel">New Note</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
@@ -124,7 +125,6 @@
           </form>
         </div>
         <div class="modal-footer">
-          <a href="reminder.html" class="card-link"><i class="material-icons">notifications</i></a>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" id="noteInputCreateButton" class="btn btn-primary" data-bs-dismiss="modal">Add
             Note</button>
@@ -137,10 +137,7 @@
   <div class="modal fade" id="deleteNoteModal" tabindex="-1" aria-labelledby="deleteNoteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteNoteModalLabel">Delete Note</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+
         <div class="modal-body">
           <p>Are you sure you want to delete this note?</p>
         </div>
@@ -157,10 +154,10 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <input class="form-control" id="expandNoteTitle"/>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <input class="form-control" id="expandNoteTitle" />
+
         </div>
-        <div class="modal-body" id = "expandNoteBody">
+        <div class="modal-body" id="expandNoteBody">
           <textarea id="expandNoteContent"></textarea>
           <input type="date" class="form-control" id="expandNoteDate">
         </div>
@@ -207,9 +204,8 @@
   </div>
 
   <footer class="navbar justify-content-evenly bg-info fixed-bottom">
-    <a href="" data-bs-toggle="modal" data-bs-target="#createFolderModal"> <i class="material-icons">create_new_folder</i></a>
-    <a href="" data-bs-toggle="modal" data-bs-target="#createNoteModal"> <i class="material-icons">add_circle_outline</i></a>
-    <a href="index.html"><i class="material-icons">logout</i></a>
+    <a href="" data-bs-toggle="modal" data-bs-target="#createNoteModal"> <i
+        class="material-icons">add_circle_outline</i></a>
   </footer>
 
   <!-- JavaScript -->
