@@ -9,9 +9,13 @@ textarea {
 }
 
 .placeholder {
-    background-color: #edf2f7;
+    background-color: #ECF1FE;
     border: 2px dashed #cbd5e0;
     margin-bottom: 0.25rem;
+
+    /* Size */
+    height: 10rem;
+    width: 95vw;
 }
 
 .modal-content {
