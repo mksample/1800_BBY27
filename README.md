@@ -79,7 +79,7 @@ Firebase hosting files:
 ## Contact 
 * Monica Bacatan - mbacatan1@my.bcit.ca 
 * Waleed Ur Rehman - wurrehman@my.bcit.ca
-* ...
+* Markus Sample - msample4@my.bcit.ca
 
 ## Acknowledgements 
 * <a href="https://fonts.google.com/">Google Fonts</a>
