@@ -24,11 +24,6 @@ Content of the project folder:
 ├── index.html               # landing HTML file, this is what users see when you come to url
 ├── login.html               # login HTML file, the log-in page
 ├── main.html                # main HTML file, the landing page after log-in or user set-up
-├── content.html             # test display for note content (not used in final app)
-├── newfolder.html           # test display for new folder (not used in final app)
-├── newnote.html             # test display for new note (not used in final app)
-├── reminder.html            # test display for setting a reminder (not used in final app)
-├── test.html                # test display for note content (not used in final app)
 └── README.md                # the readme file for this project
 
 It has the following subfolders and files:
@@ -44,10 +39,8 @@ It has the following subfolders and files:
         /folder.js                  # JS for folder collection in firebase (not used in final app)
         /help.js                    # JS for help.html
         /main.js                    # JS for main.html
-        /my_script.js               # JS file (not used in final app)
         /note.js                    # JS for note collection in firebase
-        /reminder.js                # JS for reminder.html (not used in final app)
-        /user.js                    # JS for users collection in firebase
+        /reminder.js                # JS for setting a reminder
 
 ├── styles                          # Folder for styles
         /bootstrap.css              # styles imported from Bootstrap
