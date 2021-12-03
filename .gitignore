@@ -1,2 +1,8 @@
 .DS_Store
 firebaseAPI.js
+.firebase
+404.html
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
