@@ -78,7 +78,7 @@ Firebase hosting files:
 
 ## Contact 
 * Monica Bacatan - mbacatan1@my.bcit.ca 
-* ...
+* Waleed Ur Rehman - wurrehman@my.bcit.ca
 * ...
 
 ## Acknowledgements 
