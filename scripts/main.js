@@ -316,16 +316,3 @@ function ready(callback) {
         console.log("Listener was invoked");
     }
 }
-
-function darkMode() {
-    document.getElementById("mainBody").style.backgroundColor = "black";
-    //document.getElementsByTagName("a").style.color = "white";
-    //document.getElementsByClassName("container-fluid").style.backgroundColor = "black";
-    //document.getElementsByClassName("bg-light").style.backgroundColor = "black";
-    document.getElementById("container").style.backgroundColor = "grey";
-    document.getElementById("username").style.color = "white";
-
-    // have to make the colour not important or it overrides it
-    document.getElementById("footer").style.backgroundColor = "grey";
-    //document.getElementsByClassName("navbar").style.backgroundColor = "grey";
-};
